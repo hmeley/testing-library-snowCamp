@@ -1,0 +1,9 @@
+<form class="col-md-4 ms-4 mt-4">
+  <label for="option" class="form-label">Check Optionnel</label>
+  <input id="option" class="form-check-input" type="checkbox"/>
+  <br>
+  <label for="agree" class="form-label">Agreed</label>
+  <input id="agree" class="form-check-input" type="checkbox" [(ngModel)]="check"/>
+  <br>
+  <button type="button" [disabled]="!check">MyButton</button>
+</form>

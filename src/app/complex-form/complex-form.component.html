@@ -1,0 +1,80 @@
+<div class="col-lg-8 ms-4 mt-4">
+<form  (submit)="submit()" [formGroup]="form" class="row g-3 needs-validation" novalidate>
+  <div class="col-md-4 position-relative" >
+    <label for="validationCustom01" class="form-label">First name</label>
+    <input type="text"  formControlName="firstName" class="form-control" id="validationCustom01"  required>
+    <div *ngIf="form.get('firstName')!!.errors && form.get('firstName')!!.touched  "class="text-danger">
+      Please type a name.
+    </div>
+  </div>
+<div class="col-md-4">
+    <label for="validationCustom02" class="form-label">Last name</label>
+    <input type="text" class="form-control" formControlName="lastName" id="validationCustom02"  required>
+    <div *ngIf="form.get('lastName')!!.errors && form.get('lastName')!!.touched  "class="text-danger">
+      Please type a last name.
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustomUsername" class="form-label">Username</label>
+    <div class="input-group has-validation">
+      <span class="input-group-text" id="inputGroupPrepend">@</span>
+      <input type="text" class="form-control" id="validationCustomUsername" formControlName="userName" aria-describedby="inputGroupPrepend" required>
+      <div *ngIf="form.get('userName')!!.errors && form.get('userName')!!.touched  "class="text-danger">
+        Please choose a username.
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <label for="validationCustom04" class="form-label">State</label>
+    <select class="form-select" id="validationCustom04" formControlName="state" required (change)="onChange($event)">
+      <option selected disabled value="">Choose...</option>
+      <option value="AURA">Auvergne-RhoneAlpes</option>
+      <option value="PACA">Provence-Alpes-Côte-D-Azure</option>
+    </select>
+    <div *ngIf="form.get('state')!!.errors && form.get('state')!!.touched  "class="text-danger">
+      Please select a valid state.
+    </div>
+  </div>
+  <div class="col-md-3">
+    <label for="city" class="form-label">City</label>
+    <select class="form-select" formControlName="city" id="city" required>
+      <option selected disabled value="">Choose...</option>
+      <option *ngFor="let city of cities" >
+        {{city }}
+      </option>
+    </select>
+    <div *ngIf="form.get('city')!!.errors && form.get('city')!!.touched  "class="text-danger">
+      Please select a valid city.
+    </div>
+  </div>
+  <div class="col-md-3">
+    <label for="validationCustom05" class="form-label">Zip</label>
+    <input type="text" class="form-control" formControlName="zip" id="validationCustom05" required>
+    <div *ngIf="form.get('zip')!!.errors && form.get('zip')!!.touched  "class="text-danger">
+      Please provide a valid zip.
+    </div>
+  </div>
+  <div class="col-lg-12">
+    <label for="subscription" class="form-label">Subscription</label>
+    <input type="text" class="form-control" id="subscription" value="Premium" disabled readonly>
+  </div>
+  <div class="col-12">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" formControlName="check" id="invalidCheck" required>
+      <label class="form-check-label" for="invalidCheck">
+        Agree to terms and conditions
+      </label>
+      <div *ngIf="form.get('check')!!.errors && form.get('check')!!.touched  "class="text-danger">
+        You must agree before submitting.
+        {{form.get('check')!!.errors | json}}
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary"  [disabled]="form.invalid"  type="submit">Submit form</button>
+  </div>
+</form>
+  <div class="col-lg-12" *ngIf="submitted">
+    Form Submitted !!
+  </div>
+</div>
